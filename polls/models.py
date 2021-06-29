@@ -11,7 +11,7 @@ class Question(models.Model):
     )
 
 
-class Choide(models.Model):
+class Choice(models.Model):
     question = models.ForeignKey(
         Question,
         on_delete=models.CASCADE,
