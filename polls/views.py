@@ -2,6 +2,9 @@
 from django.http import HttpResponse
 # from django.template import loader  # tutorial 03.1 - com template index.html
 from django.shortcuts import render  # 3.2 com o atalho render(r..,t..,c..)
+# from django.http import Http404 # 3.3
+from django.shortcuts import get_object_or_404  # 3.4 com o atalho
+
 
 from polls.models import Question
 
@@ -32,8 +35,21 @@ def index(request):  # tutorial 03.2 - com o atalho render(r..,t..,c..)
     return render(request, 'polls/index.html', context)
 
 
-def detail(request, question_id):
-    return HttpResponse('Você está olhabdo para a questão %s' % question_id)
+""" def detail(request, question_id):
+    return HttpResponse('Você está olhabdo para a questão %s'% question_id) """
+
+
+""" def detail(request, question_id):  # tutorial 03.3
+    try:
+        question = Question.objects.get(pk=question_id)
+    except Question.DoesNotExist:
+        raise Http404('Question does not exist')
+    return render(request, 'polls/detail.html', {'question': question}) """
+
+
+def detail(request, question_id):  # tutorial 03.4 com atalho
+    question = get_object_or_404(Question, pk=question_id)
+    return render(request, 'polls/detail.html', {'question': question})
 
 
 def results(request, question_id):
