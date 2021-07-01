@@ -54,9 +54,14 @@ def detail(request, question_id):  # tutorial 03.4 com atalho
     return render(request, 'polls/detail.html', {'question': question})
 
 
-def results(request, question_id):
+""" def results(request, question_id):
     response = 'Você está vendo o resultado da questão %s'
-    return HttpResponse(response % question_id)
+    return HttpResponse(response % question_id) """
+
+
+def results(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    return render(request, 'polls/results.html', {'question': question})
 
 
 """ def vote(request, question_id):
