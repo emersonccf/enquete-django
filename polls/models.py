@@ -38,3 +38,9 @@ class Choice(models.Model):
 
     def __str__(self) -> str:
         return self.choice_text
+
+    def register_vote(self) -> int:
+        """ Adciona votos a escolha da enquete """
+        self.votes += 1
+        self.save()
+        return self.votes
