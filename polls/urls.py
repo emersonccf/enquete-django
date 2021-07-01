@@ -1,7 +1,9 @@
 from django.urls import path
 
 from polls import views
-
+# Namespacing no arquivo de urls para diferenciar qual a view foi chamada de
+# determinado app - app_name = 'polls'
+app_name = 'polls'
 urlpatterns = [
     # ex. /polls/
     path('', views.index, name='index'),

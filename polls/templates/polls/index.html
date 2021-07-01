@@ -4,7 +4,9 @@
             <li> {{ question.pub_date }}
             {% comment %} <a href="/polls/{{ question.id }}/">{{ question.question_text }}</a> {% endcomment %}
             <!-- url baseada no nome 'detail' passando o parâmetro esperado: o id -->
-            <a href="{% url 'detail' question.id %}">{{ question.question_text }}</a>
+            {% comment %} <a href="{% url 'detail' question.id %}">{{ question.question_text }}</a> {% endcomment %}
+            <!-- 'namespace:url_name' identifica de que app e qual a url que deve ser chamada -->
+            <a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a>
             </li>
         {% endfor %}
     </ul>
